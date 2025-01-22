@@ -1,6 +1,7 @@
 const message = "";
 
 const createData = (model) => {
+  console.log("create");
   return async (req, res) => {
     try {
       const data = req.body;
@@ -19,6 +20,7 @@ const createData = (model) => {
 };
 
 const getData = (model) => {
+  console.log("get");
   return async (req, res) => {
     try {
       if (message === null) {
@@ -77,4 +79,34 @@ const deleteDataById = (model) => {
     }
   };
 };
-module.exports = { createData, getData, getDataById, deleteDataById };
+
+const signinController = (model) => {
+  return async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const user = await model.findOne(email);
+      console.log(user);
+      if (user.password === password) {
+        res.status(200).json({
+          status: "sucess",
+          message: "signin complete",
+        });
+      } else {
+        throw new Error("password or email invalied");
+      }
+    } catch (error) {
+      res.status(404).json({
+        status: "failure",
+        message: "signin failure",
+      });
+    }
+  };
+};
+
+module.exports = {
+  createData,
+  getData,
+  getDataById,
+  deleteDataById,
+  signinController,
+};

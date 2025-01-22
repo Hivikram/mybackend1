@@ -42,7 +42,25 @@ const recipeSchema = {
     type: Array,
   },
 };
+
+const userSchema = {
+  name: {
+    type: String,
+    require: true,
+  },
+  email: {
+    type: String,
+    require: true,
+  },
+  password: {
+    type: String,
+    require: true,
+  },
+};
+
 const schema1 = mongoose.Schema(recipeSchema);
 const recipeModel = mongoose.model("Recipes", schema1);
 
-module.exports = recipeModel;
+const schema2 = mongoose.Schema(userSchema);
+const userModel = mongoose.model("User", schema2);
+module.exports = { recipeModel, userModel };
