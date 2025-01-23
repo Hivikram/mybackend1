@@ -41,7 +41,8 @@ app.post("/signup", signupController(userModel));
 app.post("/signin", signinController(userModel));
 app.post("/signout", signoutController);
 app.delete("/delAccount/:id", deleteDataById(userModel));
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
+console.log(port);
 app.listen(port, () => {
-  console.log("localhost:3000");
+  console.log("localhost:4000");
 });
