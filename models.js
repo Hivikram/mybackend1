@@ -29,6 +29,9 @@ const recipeSchema = {
   cuisine: {
     type: String,
   },
+  userId: {
+    type: Number,
+  },
   image: {
     type: String,
   },

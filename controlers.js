@@ -7,6 +7,7 @@ const message = "";
 
 const createData = (model) => {
   return async (req, res) => {
+    console.log("post");
     try {
       const data = req.body;
       const create = await model.create(data);
@@ -17,6 +18,7 @@ const createData = (model) => {
     } catch (err) {
       res.status(404).json({
         status: "failure",
+        message: err.message,
       });
     }
   };

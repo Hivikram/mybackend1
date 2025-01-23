@@ -21,10 +21,6 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-const router = express.Router();
-const user = express.Router();
-const userRouter = app.use("/userAcoutn", user);
-const recipesRouter = app.use("/recipes", router);
 
 const { mongourl } = process.env;
 mongoose
@@ -36,10 +32,10 @@ mongoose
     console.log(err);
   });
 
-recipesRouter.post("/", createData(recipeModel));
-recipesRouter.get("/", getData(recipeModel));
-recipesRouter.get("/:id", getDataById(recipeModel));
-recipesRouter.delete("/:id", deleteDataById(recipeModel));
+app.post("/recipes", createData(recipeModel));
+app.get("/recipes", getData(recipeModel));
+app.get("/recipes/:id", getDataById(recipeModel));
+app.delete("/recipes/:id", deleteDataById(recipeModel));
 
 app.post("/signup", signupController(userModel));
 app.post("/signin", signinController(userModel));
