@@ -27,9 +27,6 @@ const createData = (model) => {
 const getData = (model) => {
   return async (req, res) => {
     try {
-      if (message === null) {
-        throw new Error("NO Data to Get");
-      }
       const data = await model.find();
       res.status(200).json({
         status: "success",
@@ -141,7 +138,7 @@ const signinController = (model) => {
 };
 const signoutController = async (req, res) => {
   try {
-    const token = req.cookies.name;
+    const token = await req.cookies.name;
 
     res.clearCookie("name");
     res.status(200).json({
