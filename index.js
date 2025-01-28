@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const cros = require("cros");
+const cors = require("cors");
 
 const { recipeModel, userModel } = require("./models.js");
 
@@ -22,7 +22,7 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cros());
+app.use(cors());
 
 const { mongourl } = process.env;
 mongoose
